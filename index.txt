@@ -1,0 +1,71 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+//taking size 5*5
+#define ROW 5
+#define COL 5
+using namespace std;
+
+int result(char grid[ROW][COL],int a,int b,int c,int visited[ROW][COL],char d){
+    
+    if((a>=0&&a<=4)&&(b>=0&&b<=4)){
+    if((grid[a-1][b]==d)&&(visited[a-1][b]==0)){
+     
+        c++;
+        visited[a-1][b]=1;
+        return result(grid,a-1,b,c,visited,d);
+    }
+    if((grid[a+1][b]==d)&&(visited[a+1][b]==0)){
+ 
+        c++;
+        visited[a+1][b]=1;
+        return result(grid,a+1,b,c,visited,d);
+    }
+    if((grid[a][b-1]==d)&&(visited[a][b-1]==0)){
+  
+        visited[a][b-1]=1;
+        c++;
+        return result(grid,a,b-1,c,visited,d);
+    }
+    if((grid[a][b+1]==d)&&(visited[a][b+1]==0)){
+   
+        visited[a][b+1]=1;
+        c++;
+        return result(grid,a,b+1,c,visited,d);
+    }
+    
+    }
+    
+   return c;
+}
+
+
+int main() {
+
+	
+char grid[ROW][COL] =
+    {
+        'R','G','B','B','G',
+        'R','G','B','B','G',
+        'R','G','B','B','G',
+        'R','G','B','B','G',
+        'R','G','B','B','G',
+    };
+int visited[ROW][COL] =
+    {
+        0,0,0,0,0,
+        0,0,0,0,0,
+        0,0,0,0,0,
+        0,0,0,0,0,
+        0,0,0,0,0,
+    };
+    //finding result for element grid[a][b]
+    int a= 4;
+    int b =2;
+    visited[a][b]=1;
+    char d = grid[a][b];//given element 
+    
+    int ans = result(grid,a,b,1,visited,d);
+  
+	cout<<ans;
+} 
